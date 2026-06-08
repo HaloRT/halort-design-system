@@ -1,0 +1,29 @@
+{
+  "name": "@halort/illustrations",
+  "version": "0.1.0",
+  "description": "Placeholder illustrations for HaloRT design system.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "lint": "echo 'No lint configured for illustrations'"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.4",
+    "typescript": "^5.8.3"
+  }
+}

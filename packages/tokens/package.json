@@ -1,0 +1,26 @@
+{
+  "name": "@halort/tokens",
+  "version": "0.1.0",
+  "description": "HaloRT design tokens — single source of truth for colors, spacing, typography, and more.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./css": "./dist/css/variables.css",
+    "./tailwind": "./dist/tailwind/theme.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "node scripts/build.mjs && tsc",
+    "clean": "rm -rf dist",
+    "lint": "echo 'No lint configured for tokens'"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.2"
+  }
+}

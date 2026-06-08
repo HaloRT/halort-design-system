@@ -1,0 +1,33 @@
+{
+  "name": "@halort/themes",
+  "version": "0.1.0",
+  "description": "Multi-tenant theming for HaloRT — dark/light modes and white-label tenant themes.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc && cp src/styles.css dist/styles.css && cat src/tenant-themes.css >> dist/styles.css",
+    "clean": "rm -rf dist",
+    "lint": "echo 'No lint configured for themes'"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^1.17.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.4",
+    "typescript": "^5.8.3"
+  }
+}

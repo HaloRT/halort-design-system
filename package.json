@@ -1,0 +1,29 @@
+{
+  "name": "halort-design-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Centralized HaloRT Design System — UI components, design tokens, Storybook, mobile patterns, email templates, and multi-tenant theming.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "storybook": "npm run dev -w @halort/storybook",
+    "build-storybook": "npm run build -w @halort/storybook",
+    "tokens:build": "npm run build -w @halort/tokens",
+    "clean": "turbo run clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=20"
+  }
+}

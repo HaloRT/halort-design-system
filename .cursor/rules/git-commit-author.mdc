@@ -1,0 +1,23 @@
+---
+description: Use Iman Suherman as the git commit author for all commits in this repo
+alwaysApply: true
+---
+
+# Git Commit Author
+
+When creating git commits in this repository, always attribute them to:
+
+- **Name:** Iman Suherman
+- **Email:** iman.suherman@gmail.com
+
+Do **not** change git config (`user.name` / `user.email`). Pass the author explicitly on each commit:
+
+```bash
+git commit --author="Iman Suherman <iman.suherman@gmail.com>" -m "$(cat <<'EOF'
+Commit message here.
+
+EOF
+)"
+```
+
+Apply the same author for any amend or new commit created in this repo.

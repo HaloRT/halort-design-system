@@ -1,0 +1,12 @@
+node_modules
+dist
+storybook-static
+.turbo
+*.log
+.DS_Store
+coverage
+.env
+.env.*
+!.env.example
+.vercel/*
+!.vercel/project.json

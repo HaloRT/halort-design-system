@@ -1,0 +1,26 @@
+{
+  "name": "@halort/example-basic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@halort/themes": "*",
+    "@halort/web": "*",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.5.2",
+    "tailwindcss": "^4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}

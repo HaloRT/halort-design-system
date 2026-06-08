@@ -1,0 +1,50 @@
+
+/* Tenant theme overrides — multi-tenant white-label support */
+
+.theme-cluster[data-theme="dark"] {
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --primary-dark: #1d4ed8;
+}
+
+.theme-cluster[data-theme="light"] {
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --primary-dark: #1e40af;
+}
+
+.theme-apartment[data-theme="dark"] {
+  --primary: #8b5cf6;
+  --primary-light: #a78bfa;
+  --primary-dark: #6d28d9;
+}
+
+.theme-apartment[data-theme="light"] {
+  --primary: #7c3aed;
+  --primary-light: #8b5cf6;
+  --primary-dark: #5b21b6;
+}
+
+.theme-developer[data-theme="dark"] {
+  --primary: #06b6d4;
+  --primary-light: #22d3ee;
+  --primary-dark: #0891b2;
+}
+
+.theme-developer[data-theme="light"] {
+  --primary: #0891b2;
+  --primary-light: #06b6d4;
+  --primary-dark: #0e7490;
+}
+
+.theme-corporate[data-theme="dark"] {
+  --primary: #64748b;
+  --primary-light: #94a3b8;
+  --primary-dark: #475569;
+}
+
+.theme-corporate[data-theme="light"] {
+  --primary: #475569;
+  --primary-light: #64748b;
+  --primary-dark: #334155;
+}
