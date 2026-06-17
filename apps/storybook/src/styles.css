@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@halort/web/styles.css";
+@source "../../packages/web/src";
 
 body {
   margin: 0;

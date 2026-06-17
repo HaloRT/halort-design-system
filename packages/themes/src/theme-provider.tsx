@@ -32,7 +32,7 @@ type ThemeContextValue = {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function getServerTheme(): ThemeMode {
-  return "dark";
+  return "light";
 }
 
 function getServerTenantTheme(): TenantThemeId {

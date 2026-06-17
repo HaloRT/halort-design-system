@@ -75,9 +75,10 @@ export const THEME_COLORS: Record<ThemeMode, string> = {
 };
 
 export function getStoredTheme(): ThemeMode {
-  if (typeof window === "undefined") return "dark";
+  if (typeof window === "undefined") return "light";
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  return stored === "light" ? "light" : "dark";
+  if (stored === "dark") return "dark";
+  return "light";
 }
 
 export function getStoredTenantTheme(): TenantThemeId {
@@ -127,4 +128,4 @@ export function applyTheme(theme: ThemeMode, tenantId: TenantThemeId = "halort-d
   }
 }
 
-export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var n=localStorage.getItem("${TENANT_STORAGE_KEY}");document.documentElement.dataset.theme=t==="light"?"light":"dark";document.documentElement.dataset.tenant=n||"halort-default";}catch(e){document.documentElement.dataset.theme="dark";document.documentElement.dataset.tenant="halort-default";}})();`;
+export const themeInitScript = `(function(){try{var t=localStorage.getItem("${THEME_STORAGE_KEY}");var n=localStorage.getItem("${TENANT_STORAGE_KEY}");document.documentElement.dataset.theme=t==="dark"?"dark":"light";document.documentElement.dataset.tenant=n||"halort-default";}catch(e){document.documentElement.dataset.theme="light";document.documentElement.dataset.tenant="halort-default";}})();`;

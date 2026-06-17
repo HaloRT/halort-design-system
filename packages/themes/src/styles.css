@@ -1,28 +1,4 @@
 :root,
-[data-theme="dark"] {
-  --background: #000000;
-  --foreground: #ffffff;
-  --muted: #b0b0b0;
-  --surface: #0a0a0a;
-  --surface-muted: #141414;
-  --surface-elevated: #141414;
-  --surface-dark: #0a0a0a;
-  --border: rgba(255, 255, 255, 0.08);
-  --primary: #22c55e;
-  --primary-light: #84cc16;
-  --primary-dark: #15803d;
-  --accent: #f97316;
-  --accent-light: #fbbf24;
-  --accent-dark: #ea580c;
-  --primary-foreground: #000000;
-  --success: #10B981;
-  --warning: #F59E0B;
-  --danger: #EF4444;
-  --footer-muted: #a3a3a3;
-  --footer-text: #ffffff;
-  --footer-border: rgba(255, 255, 255, 0.08);
-}
-
 [data-theme="light"] {
   --background: #f8f6f3;
   --foreground: #363535;
@@ -45,6 +21,30 @@
   --footer-muted: #a1a1aa;
   --footer-text: #e4e4e7;
   --footer-border: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #b0b0b0;
+  --surface: #0a0a0a;
+  --surface-muted: #141414;
+  --surface-elevated: #141414;
+  --surface-dark: #0a0a0a;
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #22c55e;
+  --primary-light: #84cc16;
+  --primary-dark: #15803d;
+  --accent: #f97316;
+  --accent-light: #fbbf24;
+  --accent-dark: #ea580c;
+  --primary-foreground: #000000;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --danger: #EF4444;
+  --footer-muted: #a3a3a3;
+  --footer-text: #ffffff;
+  --footer-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -315,6 +315,40 @@ body {
   );
 }
 
+@layer components {
+  .btn-primary,
+  .btn-secondary,
+  .btn-warm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 150ms ease;
+    box-sizing: border-box;
+  }
+
+  .btn-primary,
+  .btn-warm {
+    border: none;
+  }
+
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible,
+  .btn-warm:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary);
+  }
+}
+
 [data-theme="dark"] .btn-primary {
   background: linear-gradient(135deg, #84cc16 0%, #22c55e 50%, #15803d 100%);
   color: #000000;
@@ -365,6 +399,16 @@ body {
 [data-theme="light"] .btn-secondary:hover {
   border-color: rgba(254, 132, 0, 0.3);
   background: var(--surface-muted);
+}
+
+[data-theme="light"] .btn-warm {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ea580c 100%);
+  color: #000000;
+  box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.25);
+}
+
+[data-theme="light"] .btn-warm:hover {
+  filter: brightness(1.1);
 }
 
 [data-theme="dark"] .badge-default {
