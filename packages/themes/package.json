@@ -1,6 +1,6 @@
 {
   "name": "@halort/themes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Multi-tenant theming for HaloRT — dark/light modes and white-label tenant themes.",
   "type": "module",
   "main": "./dist/index.js",
