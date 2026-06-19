@@ -17,6 +17,7 @@
     "build-storybook": "npm run build -w @halort/storybook",
     "build:vercel": "npm run build && npm run build-storybook",
     "tokens:build": "npm run build -w @halort/tokens",
+    "publish:packages": "node scripts/publish-packages.mjs",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {

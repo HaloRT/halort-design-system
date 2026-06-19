@@ -13,6 +13,14 @@
     }
   },
   "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaloRT/halort-design-system.git",
+    "directory": "packages/mobile"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
@@ -23,7 +31,7 @@
     "react-native": ">=0.76.0"
   },
   "dependencies": {
-    "@halort/tokens": "*"
+    "@halort/tokens": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^19",

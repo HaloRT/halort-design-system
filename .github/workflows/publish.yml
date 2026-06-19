@@ -1,0 +1,46 @@
+name: Publish npm packages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "packages/**"
+      - "package-lock.json"
+      - "scripts/publish-packages.mjs"
+  workflow_dispatch:
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  publish:
+    name: Publish @halort packages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build packages
+        run: npm run build
+
+      - name: Publish to npm
+        run: npm run publish:packages -- --continue-on-exist
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

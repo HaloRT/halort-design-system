@@ -14,6 +14,14 @@
     "./styles.css": "./dist/styles.css"
   },
   "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaloRT/halort-design-system.git",
+    "directory": "packages/themes"
+  },
   "scripts": {
     "build": "tsc && cp src/styles.css dist/styles.css && cat src/tenant-themes.css >> dist/styles.css",
     "clean": "rm -rf dist",

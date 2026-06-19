@@ -122,6 +122,33 @@ npm run build-storybook
 # Deploy apps/storybook/storybook-static
 ```
 
+## Publish to npm
+
+`@halort/*` packages are published to [npmjs](https://www.npmjs.com) so consumers (e.g. `halort-platform-web`, Docker) install from the registry instead of local `file:` paths.
+
+### One-time setup
+
+1. Create the `@halort` npm organization (or ensure your account can publish scoped packages).
+2. Add GitHub secret `NPM_TOKEN` (automation token with publish access) to `halort-design-system`.
+
+```bash
+gh secret set NPM_TOKEN --body "npm_..." --repo HaloRT/halort-design-system
+```
+
+### Publish
+
+**CI:** pushes to `main` that touch `packages/**` run `.github/workflows/publish.yml`.
+
+**Local:**
+
+```bash
+npm login
+npm run build
+npm run publish:packages
+```
+
+Bump `version` in each `packages/*/package.json` before publishing updates.
+
 ## License
 
 Proprietary — HaloRT Platform

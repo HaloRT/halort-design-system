@@ -13,6 +13,14 @@
     }
   },
   "files": ["dist", "assets"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaloRT/halort-design-system.git",
+    "directory": "packages/email"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
@@ -22,7 +30,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@halort/tokens": "*",
+    "@halort/tokens": "^0.1.0",
     "@react-email/components": "^0.0.41",
     "@react-email/render": "^1.1.2"
   },

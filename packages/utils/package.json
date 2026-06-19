@@ -13,6 +13,14 @@
     }
   },
   "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaloRT/halort-design-system.git",
+    "directory": "packages/utils"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist",
