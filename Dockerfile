@@ -1,9 +1,10 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
-COPY package.json package-lock.json turbo.json ./
+COPY package.json package-lock.json turbo.json tsconfig.base.json ./
 COPY apps ./apps
 COPY packages ./packages
 COPY examples ./examples
+COPY scripts ./scripts
 RUN npm ci
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build:vercel
