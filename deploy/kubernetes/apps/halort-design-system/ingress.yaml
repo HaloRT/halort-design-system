@@ -9,10 +9,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - design.k8s.halort.com
+        - design.halort.com
       secretName: halort-design-system-tls
   rules:
-    - host: design.k8s.halort.com
+    - host: design.halort.com
       http:
         paths:
           - path: /
