@@ -1,0 +1,11 @@
+.git
+.github
+.cursor
+node_modules
+**/node_modules
+**/.cache
+apps/storybook/storybook-static
+*.md
+docs
+.credentials
+coverage

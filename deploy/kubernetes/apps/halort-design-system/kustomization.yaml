@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: halort
+resources:
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+commonLabels:
+  app.kubernetes.io/name: halort-design-system
+  app.kubernetes.io/part-of: halort
+images:
+  - name: ghcr.io/halort/halort-design-system
+    newTag: latest
