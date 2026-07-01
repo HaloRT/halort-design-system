@@ -102,6 +102,46 @@ export function PasswordResetEmail({
   );
 }
 
+export function MagicLinkEmail({
+  loginUrl = `${baseUrl}/login`,
+  tenantName = "Komunitas Anda",
+  expiresMinutes = 15,
+  logoUrl,
+  assetBaseUrl,
+}: {
+  loginUrl?: string;
+  tenantName?: string;
+  expiresMinutes?: number;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Tautan masuk ke ${tenantName}`}
+      title={`Masuk ke ${tenantName}`}
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo,</Text>
+      <Text style={paragraph}>
+        Klik tombol di bawah untuk masuk ke portal <strong>{tenantName}</strong> di
+        HaloRT — tanpa kata sandi, cukup sekali klik.
+      </Text>
+      <Section style={btnContainer}>
+        <Button style={button} href={loginUrl}>
+          Masuk Sekarang
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Tautan berlaku {expiresMinutes} menit dan hanya bisa dipakai sekali. Jika tombol
+        tidak berfungsi, salin tautan ini ke peramban Anda:
+      </Text>
+      <Text style={linkText}>{loginUrl}</Text>
+      <Text style={finePrint}>
+        Jika Anda tidak meminta email ini, abaikan pesan ini.
+      </Text>
+    </EmailLayout>
+  );
+}
+
 export function VerificationEmail({
   code = "123456",
   logoUrl,
@@ -318,10 +358,24 @@ const codeStyle = {
   padding: "16px",
   margin: "16px 0",
 };
+const finePrint = {
+  color: emailTheme.footer,
+  fontSize: "13px",
+  lineHeight: "20px",
+  margin: "0 0 12px",
+};
+const linkText = {
+  color: emailTheme.accent,
+  fontSize: "13px",
+  lineHeight: "20px",
+  wordBreak: "break-all" as const,
+  margin: "0 0 16px",
+};
 
 export const emailTemplates = {
   WelcomeEmail,
   PasswordResetEmail,
+  MagicLinkEmail,
   VerificationEmail,
   PaymentReminderEmail,
   AnnouncementEmail,

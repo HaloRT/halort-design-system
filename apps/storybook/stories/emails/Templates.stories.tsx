@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import {
   WelcomeEmail,
   PasswordResetEmail,
+  MagicLinkEmail,
   VerificationEmail,
   PaymentReminderEmail,
   AnnouncementEmail,
@@ -23,6 +24,17 @@ export const Welcome: Story = {
 
 export const PasswordReset: Story = {
   render: () => <EmailPreview><PasswordResetEmail /></EmailPreview>,
+};
+
+export const MagicLink: Story = {
+  render: () => (
+    <EmailPreview>
+      <MagicLinkEmail
+        tenantName="Golden Park 2"
+        loginUrl="https://gp2.halort.com/auth/callback?token=sample"
+      />
+    </EmailPreview>
+  ),
 };
 
 export const Verification: Story = {
