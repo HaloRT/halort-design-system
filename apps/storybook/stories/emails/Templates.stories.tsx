@@ -11,6 +11,8 @@ import {
   FundraisingCampaignEmail,
   VisitorApprovalEmail,
   PackageArrivalEmail,
+  ContactInquiryEmail,
+  ContactAutoReplyEmail,
 } from "@halort/email";
 import { EmailPreview } from "./EmailPreview.js";
 
@@ -67,4 +69,27 @@ export const VisitorApproval: Story = {
 
 export const PackageArrival: Story = {
   render: () => <EmailPreview><PackageArrivalEmail /></EmailPreview>,
+};
+
+export const ContactInquiry: Story = {
+  render: () => (
+    <EmailPreview>
+      <ContactInquiryEmail
+        name="Budi Santoso"
+        email="budi@example.com"
+        phone="081234567890"
+        communityName="RT 10 Golden Park 2"
+        topic="Demo produk"
+        message="Kami ingin melihat demo HaloRT untuk komunitas kami."
+      />
+    </EmailPreview>
+  ),
+};
+
+export const ContactAutoReply: Story = {
+  render: () => (
+    <EmailPreview>
+      <ContactAutoReplyEmail name="Budi Santoso" topic="Demo produk" />
+    </EmailPreview>
+  ),
 };

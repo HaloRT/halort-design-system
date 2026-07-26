@@ -308,6 +308,86 @@ export function PackageArrivalEmail({
   );
 }
 
+function ContactDetail({ label, value }: { label: string; value: string }) {
+  return (
+    <Text style={detailRow}>
+      <strong style={detailLabel}>{label}</strong>
+      <br />
+      {value}
+    </Text>
+  );
+}
+
+export function ContactInquiryEmail({
+  name = "Pengunjung",
+  email = "pengunjung@example.com",
+  phone = "",
+  communityName = "",
+  topic = "Konsultasi",
+  message = "Saya tertarik dengan HaloRT.",
+  logoUrl,
+  assetBaseUrl,
+}: {
+  name?: string;
+  email?: string;
+  phone?: string;
+  communityName?: string;
+  topic?: string;
+  message?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Pesan kontak: ${topic} — ${name}`}
+      title="Pesan Kontak Baru"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>
+        Ada pesan baru dari formulir kontak website HaloRT.
+      </Text>
+      <ContactDetail label="Nama" value={name} />
+      <ContactDetail label="Email" value={email} />
+      {phone ? <ContactDetail label="Telepon" value={phone} /> : null}
+      {communityName ? (
+        <ContactDetail label="Nama komunitas" value={communityName} />
+      ) : null}
+      <ContactDetail label="Topik" value={topic} />
+      <ContactDetail label="Pesan" value={message} />
+    </EmailLayout>
+  );
+}
+
+export function ContactAutoReplyEmail({
+  name = "Pengunjung",
+  topic = "Konsultasi",
+  logoUrl,
+  assetBaseUrl,
+}: {
+  name?: string;
+  topic?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview="Terima kasih — kami telah menerima pesan Anda"
+      title="Terima Kasih Telah Menghubungi HaloRT"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo {name},</Text>
+      <Text style={paragraph}>
+        Terima kasih telah menghubungi HaloRT mengenai{" "}
+        <strong>{topic}</strong>. Tim kami telah menerima pesan Anda dan akan
+        segera menindaklanjuti.
+      </Text>
+      <Text style={paragraph}>
+        Jika ada informasi tambahan, balas saja email ini atau tulis ke{" "}
+        <strong>halortpojokan@gmail.com</strong>.
+      </Text>
+      <Text style={paragraph}>Salam hangat,<br />Tim HaloRT</Text>
+    </EmailLayout>
+  );
+}
+
 const main = {
   backgroundColor: emailTheme.background,
   fontFamily: "Geist, Arial, sans-serif",
@@ -371,6 +451,14 @@ const linkText = {
   wordBreak: "break-all" as const,
   margin: "0 0 16px",
 };
+const detailRow = {
+  ...paragraph,
+  margin: "0 0 12px",
+};
+const detailLabel = {
+  color: emailTheme.foreground,
+  fontWeight: "600" as const,
+};
 
 export const emailTemplates = {
   WelcomeEmail,
@@ -384,6 +472,8 @@ export const emailTemplates = {
   FundraisingCampaignEmail,
   VisitorApprovalEmail,
   PackageArrivalEmail,
+  ContactInquiryEmail,
+  ContactAutoReplyEmail,
 };
 
 export { EMAIL_ASSETS, getLogoUrl, EMAIL_LOGO_DISPLAY, LOGO_DIMENSIONS } from "./constants.js";
