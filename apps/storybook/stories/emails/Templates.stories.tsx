@@ -13,6 +13,8 @@ import {
   PackageArrivalEmail,
   ContactInquiryEmail,
   ContactAutoReplyEmail,
+  CommunityRegistrationPendingEmail,
+  CommunityRegistrationApprovedEmail,
 } from "@halort/email";
 import { EmailPreview } from "./EmailPreview.js";
 
@@ -90,6 +92,33 @@ export const ContactAutoReply: Story = {
   render: () => (
     <EmailPreview>
       <ContactAutoReplyEmail name="Budi Santoso" topic="Demo produk" />
+    </EmailPreview>
+  ),
+};
+
+export const CommunityRegistrationPending: Story = {
+  render: () => (
+    <EmailPreview>
+      <CommunityRegistrationPendingEmail
+        communityName="RT 10 Golden Park 2"
+        slug="gp2-rt10"
+        registrantName="Budi Santoso"
+        registrantEmail="budi@example.com"
+        topic="Demo produk"
+      />
+    </EmailPreview>
+  ),
+};
+
+export const CommunityRegistrationApproved: Story = {
+  render: () => (
+    <EmailPreview>
+      <CommunityRegistrationApprovedEmail
+        communityName="RT 10 Golden Park 2"
+        slug="gp2-rt10"
+        portalUrl="https://gp2-rt10.halort.com"
+        registrantName="Budi Santoso"
+      />
     </EmailPreview>
   ),
 };

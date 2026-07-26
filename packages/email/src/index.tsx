@@ -308,6 +308,87 @@ export function PackageArrivalEmail({
   );
 }
 
+export function CommunityRegistrationPendingEmail({
+  communityName = "RT 10 Golden Park 2",
+  slug = "gp2-rt10",
+  registrantName = "Budi Santoso",
+  registrantEmail = "budi@example.com",
+  topic = "",
+  logoUrl,
+  assetBaseUrl,
+}: {
+  communityName?: string;
+  slug?: string;
+  registrantName?: string;
+  registrantEmail?: string;
+  topic?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Pendaftaran ${communityName} telah kami terima`}
+      title="Pendaftaran komunitas diterima"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo {registrantName},</Text>
+      <Text style={paragraph}>
+        Terima kasih telah mendaftarkan <strong>{communityName}</strong> di HaloRT.
+        Pendaftaran Anda dengan email {registrantEmail} kini sedang{" "}
+        <strong>menunggu persetujuan HaloRT</strong>
+        {topic ? ` untuk ${topic}` : ""}.
+      </Text>
+      <Text style={paragraph}>
+        Setelah disetujui, portal komunitas Anda akan aktif di subdomain{" "}
+        <strong>{slug}.halort.com</strong>. Kami akan mengirimkan email
+        konfirmasi begitu proses persetujuan selesai.
+      </Text>
+      <Text style={finePrint}>
+        Proses tinjauan biasanya memakan waktu 1-2 hari kerja. Mohon
+        ditunggu ya.
+      </Text>
+    </EmailLayout>
+  );
+}
+
+export function CommunityRegistrationApprovedEmail({
+  communityName = "RT 10 Golden Park 2",
+  slug = "gp2-rt10",
+  portalUrl = `https://${slug}.halort.com`,
+  registrantName = "Budi Santoso",
+  logoUrl,
+  assetBaseUrl,
+}: {
+  communityName?: string;
+  slug?: string;
+  portalUrl?: string;
+  registrantName?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`${communityName} telah disetujui di HaloRT`}
+      title="Komunitas Anda disetujui"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo {registrantName},</Text>
+      <Text style={paragraph}>
+        Selamat! Pendaftaran <strong>{communityName}</strong> telah{" "}
+        <strong>disetujui</strong> oleh tim HaloRT. Portal komunitas Anda
+        kini sudah aktif dan siap digunakan.
+      </Text>
+      <Section style={btnContainer}>
+        <Button style={button} href={portalUrl}>
+          Masuk ke Portal
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Jika tombol tidak berfungsi, salin tautan ini ke peramban Anda:
+      </Text>
+      <Text style={linkText}>{portalUrl}</Text>
+    </EmailLayout>
+  );
+}
+
 function ContactDetail({ label, value }: { label: string; value: string }) {
   return (
     <Text style={detailRow}>
@@ -474,6 +555,8 @@ export const emailTemplates = {
   PackageArrivalEmail,
   ContactInquiryEmail,
   ContactAutoReplyEmail,
+  CommunityRegistrationPendingEmail,
+  CommunityRegistrationApprovedEmail,
 };
 
 export { EMAIL_ASSETS, getLogoUrl, EMAIL_LOGO_DISPLAY, LOGO_DIMENSIONS } from "./constants.js";
