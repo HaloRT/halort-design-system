@@ -15,6 +15,8 @@ import {
   ContactAutoReplyEmail,
   CommunityRegistrationPendingEmail,
   CommunityRegistrationApprovedEmail,
+  PengaduanSubmittedEmail,
+  PengaduanRespondedEmail,
 } from "@halort/email";
 import { EmailPreview } from "./EmailPreview.js";
 
@@ -118,6 +120,34 @@ export const CommunityRegistrationApproved: Story = {
         slug="gp2-rt10"
         portalUrl="https://gp2-rt10.halort.com"
         registrantName="Budi Santoso"
+      />
+    </EmailPreview>
+  ),
+};
+
+export const PengaduanSubmitted: Story = {
+  render: () => (
+    <EmailPreview>
+      <PengaduanSubmittedEmail
+        tenantName="Golden Park 2"
+        categoryLabel="Keluhan"
+        title="Buang sampah di depan pagar"
+        senderLabel="Franki Gaol"
+        adminUrl="https://gp2.halort.com/admin/pengaduan"
+      />
+    </EmailPreview>
+  ),
+};
+
+export const PengaduanResponded: Story = {
+  render: () => (
+    <EmailPreview>
+      <PengaduanRespondedEmail
+        tenantName="Golden Park 2"
+        userName="Franki Gaol"
+        title="Buang sampah di depan pagar"
+        response="Terima kasih laporannya. Akan kami tindaklanjuti hari ini."
+        portalUrl="https://gp2.halort.com/pengaduan"
       />
     </EmailPreview>
   ),

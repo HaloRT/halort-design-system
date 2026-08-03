@@ -469,6 +469,89 @@ export function ContactAutoReplyEmail({
   );
 }
 
+export function PengaduanSubmittedEmail({
+  tenantName = "Komunitas Anda",
+  categoryLabel = "Keluhan",
+  title = "Judul pengaduan",
+  senderLabel = "Warga",
+  adminUrl = `${baseUrl}/admin/pengaduan`,
+  logoUrl,
+  assetBaseUrl,
+}: {
+  tenantName?: string;
+  categoryLabel?: string;
+  title?: string;
+  senderLabel?: string;
+  adminUrl?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Pengaduan baru: ${title}`}
+      title="Pengaduan Baru"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>
+        Ada pengaduan baru di <strong>{tenantName}</strong> yang menunggu
+        tanggapan pengurus.
+      </Text>
+      <ContactDetail label="Kategori" value={categoryLabel} />
+      <ContactDetail label="Judul" value={title} />
+      <ContactDetail label="Dari" value={senderLabel} />
+      <Section style={btnContainer}>
+        <Button style={button} href={adminUrl}>
+          Tanggapi di Portal Admin
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Jika tombol tidak berfungsi, buka tautan ini di peramban Anda:
+      </Text>
+      <Text style={linkText}>{adminUrl}</Text>
+    </EmailLayout>
+  );
+}
+
+export function PengaduanRespondedEmail({
+  tenantName = "Komunitas Anda",
+  userName = "Warga",
+  title = "Judul pengaduan",
+  response = "Tanggapan pengurus",
+  portalUrl = baseUrl,
+  logoUrl,
+  assetBaseUrl,
+}: {
+  tenantName?: string;
+  userName?: string;
+  title?: string;
+  response?: string;
+  portalUrl?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Tanggapan pengaduan — ${tenantName}`}
+      title="Tanggapan Pengaduan"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo {userName},</Text>
+      <Text style={paragraph}>
+        Pengurus <strong>{tenantName}</strong> telah menanggapi pengaduan Anda:{" "}
+        <strong>{title}</strong>.
+      </Text>
+      <ContactDetail label="Tanggapan" value={response} />
+      <Section style={btnContainer}>
+        <Button style={button} href={portalUrl}>
+          Lihat di Portal
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Jika tombol tidak berfungsi, buka tautan ini di peramban Anda:
+      </Text>
+      <Text style={linkText}>{portalUrl}</Text>
+    </EmailLayout>
+  );
+}
+
 const main = {
   backgroundColor: emailTheme.background,
   fontFamily: "Geist, Arial, sans-serif",
@@ -557,6 +640,8 @@ export const emailTemplates = {
   ContactAutoReplyEmail,
   CommunityRegistrationPendingEmail,
   CommunityRegistrationApprovedEmail,
+  PengaduanSubmittedEmail,
+  PengaduanRespondedEmail,
 };
 
 export { EMAIL_ASSETS, getLogoUrl, EMAIL_LOGO_DISPLAY, LOGO_DIMENSIONS } from "./constants.js";
