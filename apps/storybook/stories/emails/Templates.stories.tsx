@@ -15,6 +15,7 @@ import {
   ContactAutoReplyEmail,
   CommunityRegistrationPendingEmail,
   CommunityRegistrationApprovedEmail,
+  CommunityRegistrationRejectedEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
 } from "@halort/email";
@@ -120,6 +121,19 @@ export const CommunityRegistrationApproved: Story = {
         slug="gp2-rt10"
         portalUrl="https://gp2-rt10.halort.com"
         registrantName="Budi Santoso"
+      />
+    </EmailPreview>
+  ),
+};
+
+export const CommunityRegistrationRejected: Story = {
+  render: () => (
+    <EmailPreview>
+      <CommunityRegistrationRejectedEmail
+        communityName="RT 011 Kalibaru Timur"
+        slug="rt-011-kalibaru-timur"
+        registrantName="Yamin Saputra"
+        reviewNote="Mohon lengkapi data alamat dan pastikan slug unik."
       />
     </EmailPreview>
   ),

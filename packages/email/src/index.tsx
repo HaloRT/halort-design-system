@@ -389,6 +389,42 @@ export function CommunityRegistrationApprovedEmail({
   );
 }
 
+export function CommunityRegistrationRejectedEmail({
+  communityName = "RT 10 Golden Park 2",
+  slug = "gp2-rt10",
+  registrantName = "Budi Santoso",
+  reviewNote = "",
+  logoUrl,
+  assetBaseUrl,
+}: {
+  communityName?: string;
+  slug?: string;
+  registrantName?: string;
+  reviewNote?: string;
+} & EmailOptions) {
+  const note = reviewNote.trim();
+  return (
+    <EmailLayout
+      preview={`Update pendaftaran ${communityName}`}
+      title="Pendaftaran belum dapat disetujui"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>Halo {registrantName},</Text>
+      <Text style={paragraph}>
+        Terima kasih telah mendaftarkan <strong>{communityName}</strong>{" "}
+        (<strong>{slug}</strong>) di HaloRT. Setelah ditinjau, pendaftaran
+        ini <strong>belum dapat kami setujui</strong> saat ini.
+      </Text>
+      {note ? <ContactDetail label="Catatan dari tim HaloRT" value={note} /> : null}
+      <Text style={paragraph}>
+        Anda dapat mendaftar ulang dengan data yang diperbaiki, atau hubungi
+        kami jika membutuhkan bantuan.
+      </Text>
+    </EmailLayout>
+  );
+}
+
 function ContactDetail({ label, value }: { label: string; value: string }) {
   return (
     <Text style={detailRow}>
@@ -640,6 +676,7 @@ export const emailTemplates = {
   ContactAutoReplyEmail,
   CommunityRegistrationPendingEmail,
   CommunityRegistrationApprovedEmail,
+  CommunityRegistrationRejectedEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
 };
