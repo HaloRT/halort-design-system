@@ -9,10 +9,12 @@ export function EmailLogo({
   logoUrl,
   baseUrl = EMAIL_ASSETS.baseUrl,
   href = baseUrl,
+  alt = EMAIL_ASSETS.companyName,
 }: {
   logoUrl?: string;
   baseUrl?: string;
   href?: string;
+  alt?: string;
 }) {
   const src = logoUrl ?? getLogoUrl(baseUrl, "full");
 
@@ -21,7 +23,7 @@ export function EmailLogo({
       <Link href={href} style={logoLink}>
         <Img
           src={src}
-          alt={`${EMAIL_ASSETS.companyName}`}
+          alt={alt}
           width={EMAIL_LOGO_DISPLAY.width}
           height={EMAIL_LOGO_DISPLAY.height}
           style={logoImage}

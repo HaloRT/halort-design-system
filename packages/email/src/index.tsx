@@ -22,6 +22,9 @@ type EmailLayoutProps = {
   children: React.ReactNode;
   logoUrl?: string;
   assetBaseUrl?: string;
+  logoHref?: string;
+  logoAlt?: string;
+  footerLine?: string;
 };
 
 function EmailLayout({
@@ -30,6 +33,9 @@ function EmailLayout({
   children,
   logoUrl,
   assetBaseUrl = baseUrl,
+  logoHref = baseUrl,
+  logoAlt,
+  footerLine = `© ${EMAIL_ASSETS.companyName} · halort.com`,
 }: EmailLayoutProps) {
   return (
     <Html>
@@ -37,11 +43,16 @@ function EmailLayout({
       <Preview>{preview}</Preview>
       <Body style={main}>
         <Container style={container}>
-          <EmailLogo logoUrl={logoUrl} baseUrl={assetBaseUrl} href={baseUrl} />
+          <EmailLogo
+            logoUrl={logoUrl}
+            baseUrl={assetBaseUrl}
+            href={logoHref}
+            alt={logoAlt}
+          />
           <Heading style={heading}>{title}</Heading>
           {children}
           <Hr style={hr} />
-          <Text style={footer}>© {EMAIL_ASSETS.companyName} · halort.com</Text>
+          <Text style={footer}>{footerLine}</Text>
         </Container>
       </Body>
     </Html>
@@ -425,6 +436,70 @@ export function CommunityRegistrationRejectedEmail({
   );
 }
 
+const MARKETPILOT_APP_URL = "https://marketpilot.suherman.net";
+
+export function MarketPilotProductShareEmail({
+  productName = "MarketPilot product",
+  sharedByName = "A teammate",
+  shareUrl = `${MARKETPILOT_APP_URL}/share/sample`,
+  language = "en",
+  logoUrl = `${MARKETPILOT_APP_URL}/logo.png`,
+  assetBaseUrl = MARKETPILOT_APP_URL,
+}: {
+  productName?: string;
+  sharedByName?: string;
+  shareUrl?: string;
+  language?: string;
+} & EmailOptions) {
+  const isId = language === "id";
+  const preview = isId
+    ? `${sharedByName} membagikan ${productName} di MarketPilot`
+    : `${sharedByName} shared ${productName} on MarketPilot`;
+  const title = isId ? "Produk dibagikan dengan Anda" : "A product was shared with you";
+
+  return (
+    <EmailLayout
+      preview={preview}
+      title={title}
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+      logoHref={MARKETPILOT_APP_URL}
+      logoAlt="MarketPilot"
+      footerLine="© MarketPilot · marketpilot.suherman.net"
+    >
+      <Text style={paragraph}>
+        {isId ? "Halo," : "Hi,"}
+      </Text>
+      <Text style={paragraph}>
+        {isId ? (
+          <>
+            <strong>{sharedByName}</strong> membagikan produk{" "}
+            <strong>{productName}</strong> dengan Anda di MarketPilot. Buka tautan
+            ini untuk melihatnya di akun Anda.
+          </>
+        ) : (
+          <>
+            <strong>{sharedByName}</strong> shared the product{" "}
+            <strong>{productName}</strong> with you on MarketPilot. Open the link
+            to view it on your account.
+          </>
+        )}
+      </Text>
+      <Section style={btnContainer}>
+        <Button style={marketPilotButton} href={shareUrl}>
+          {isId ? "Buka produk" : "Open shared product"}
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        {isId
+          ? "Jika Anda belum punya akun, buat akun dari tautan itu dan produk akan terbuka sesudahnya. Jika tombol tidak berfungsi, salin tautan ini:"
+          : "If you do not have an account yet, create one from that link and the product will open afterwards. If the button does not work, copy this link:"}
+      </Text>
+      <Text style={linkText}>{shareUrl}</Text>
+    </EmailLayout>
+  );
+}
+
 function ContactDetail({ label, value }: { label: string; value: string }) {
   return (
     <Text style={detailRow}>
@@ -614,6 +689,17 @@ const paragraph = {
   margin: "0 0 16px",
 };
 const btnContainer = { textAlign: "center" as const, margin: "28px 0" };
+const marketPilotButton = {
+  backgroundColor: "#0057ff",
+  borderRadius: "8px",
+  color: "#ffffff",
+  fontSize: "15px",
+  fontWeight: "600",
+  textDecoration: "none",
+  padding: "12px 28px",
+  border: "1px solid #003dcc",
+  display: "inline-block",
+};
 const button = {
   backgroundColor: emailTheme.primary,
   borderRadius: "8px",
@@ -679,6 +765,7 @@ export const emailTemplates = {
   CommunityRegistrationRejectedEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
+  MarketPilotProductShareEmail,
 };
 
 export { EMAIL_ASSETS, getLogoUrl, EMAIL_LOGO_DISPLAY, LOGO_DIMENSIONS } from "./constants.js";

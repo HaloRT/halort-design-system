@@ -18,6 +18,7 @@ import {
   CommunityRegistrationRejectedEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
+  MarketPilotProductShareEmail,
 } from "@halort/email";
 import { EmailPreview } from "./EmailPreview.js";
 
@@ -162,6 +163,19 @@ export const PengaduanResponded: Story = {
         title="Buang sampah di depan pagar"
         response="Terima kasih laporannya. Akan kami tindaklanjuti hari ini."
         portalUrl="https://gp2.halort.com/pengaduan"
+      />
+    </EmailPreview>
+  ),
+};
+
+export const MarketPilotProductShare: Story = {
+  render: () => (
+    <EmailPreview>
+      <MarketPilotProductShareEmail
+        productName="The Adventure Book"
+        sharedByName="Iman Suherman"
+        shareUrl="https://marketpilot.suherman.net/share/sample"
+        language="en"
       />
     </EmailPreview>
   ),
