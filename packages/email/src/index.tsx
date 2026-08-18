@@ -582,7 +582,7 @@ export function ContactAutoReplyEmail({
 
 export function SubscriptionInvoicePaidEmail({
   tenantName = "Komunitas Anda",
-  planLabel = "BASIC",
+  planLabel = "Starter",
   amount = "Rp 99.000",
   months = "1",
   invoiceId = "hrt…",
@@ -635,7 +635,7 @@ export function SubscriptionInvoicePaidEmail({
 
 export function SubscriptionRenewalDueEmail({
   tenantName = "Komunitas Anda",
-  planLabel = "BASIC",
+  planLabel = "Starter",
   amount = "Rp 99.000",
   months = "1",
   invoiceId = "hrt…",
