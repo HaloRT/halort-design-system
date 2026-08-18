@@ -633,6 +633,58 @@ export function SubscriptionInvoicePaidEmail({
   );
 }
 
+export function SubscriptionRenewalDueEmail({
+  tenantName = "Komunitas Anda",
+  planLabel = "BASIC",
+  amount = "Rp 99.000",
+  months = "1",
+  invoiceId = "hrt…",
+  activeUntil = "19 Sep 2026",
+  paymentUrl = baseUrl,
+  portalUrl = baseUrl,
+  logoUrl,
+  assetBaseUrl,
+}: {
+  tenantName?: string;
+  planLabel?: string;
+  amount?: string;
+  months?: string;
+  invoiceId?: string;
+  activeUntil?: string;
+  paymentUrl?: string;
+  portalUrl?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Tagihan perpanjangan HaloRT — ${tenantName}`}
+      title="Tagihan Perpanjangan Layanan"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>
+        Masa aktif layanan HaloRT untuk <strong>{tenantName}</strong> akan
+        berakhir pada <strong>{activeUntil}</strong>. Tagihan otomatis sudah
+        dibuat agar layanan tidak terpengaruh suspend.
+      </Text>
+      <ContactDetail label="Paket" value={planLabel} />
+      <ContactDetail label="Jumlah" value={amount} />
+      <ContactDetail label="Durasi" value={`${months} bulan`} />
+      <ContactDetail label="Nomor invoice" value={invoiceId} />
+      <ContactDetail label="Aktif sampai" value={activeUntil} />
+      <Section style={btnContainer}>
+        <Button style={button} href={paymentUrl}>
+          Bayar Sekarang
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Setelah bayar, status perpanjangan akan diperbarui otomatis. Pantau juga
+        di portal pengurus:
+      </Text>
+      <Text style={linkText}>{portalUrl}</Text>
+    </EmailLayout>
+  );
+}
+
 export function PengaduanSubmittedEmail({
   tenantName = "Komunitas Anda",
   categoryLabel = "Keluhan",
@@ -817,6 +869,7 @@ export const emailTemplates = {
   CommunityRegistrationApprovedEmail,
   CommunityRegistrationRejectedEmail,
   SubscriptionInvoicePaidEmail,
+  SubscriptionRenewalDueEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
   MarketPilotProductShareEmail,
