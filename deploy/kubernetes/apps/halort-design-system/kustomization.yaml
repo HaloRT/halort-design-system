@@ -10,4 +10,4 @@ commonLabels:
   app.kubernetes.io/part-of: halort
 images:
   - name: ghcr.io/halort/halort-design-system
-    newTag: 62fac315e79bddd1ea1b0caaddf6a138f9dc1a92
+    newTag: 551f27b6b0076f85716d260021cd1848e100c2f6
