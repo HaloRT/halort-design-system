@@ -580,6 +580,59 @@ export function ContactAutoReplyEmail({
   );
 }
 
+export function SubscriptionInvoicePaidEmail({
+  tenantName = "Komunitas Anda",
+  planLabel = "BASIC",
+  amount = "Rp 99.000",
+  months = "1",
+  invoiceId = "hrt…",
+  paidAt = "19 Agu 2026",
+  activeUntil = "19 Sep 2026",
+  portalUrl = baseUrl,
+  logoUrl,
+  assetBaseUrl,
+}: {
+  tenantName?: string;
+  planLabel?: string;
+  amount?: string;
+  months?: string;
+  invoiceId?: string;
+  paidAt?: string;
+  activeUntil?: string;
+  portalUrl?: string;
+} & EmailOptions) {
+  return (
+    <EmailLayout
+      preview={`Pembayaran perpanjangan berhasil — ${tenantName}`}
+      title="Perpanjangan Layanan Berhasil"
+      logoUrl={logoUrl}
+      assetBaseUrl={assetBaseUrl}
+    >
+      <Text style={paragraph}>
+        Pembayaran perpanjangan layanan HaloRT untuk{" "}
+        <strong>{tenantName}</strong> sudah berhasil. Berikut ringkasan invoice
+        Anda.
+      </Text>
+      <ContactDetail label="Paket" value={planLabel} />
+      <ContactDetail label="Jumlah" value={amount} />
+      <ContactDetail label="Durasi" value={`${months} bulan`} />
+      <ContactDetail label="Nomor invoice" value={invoiceId} />
+      <ContactDetail label="Tanggal bayar" value={paidAt} />
+      <ContactDetail label="Aktif sampai" value={activeUntil} />
+      <Section style={btnContainer}>
+        <Button style={button} href={portalUrl}>
+          Buka Portal Pengurus
+        </Button>
+      </Section>
+      <Text style={finePrint}>
+        Simpan email ini sebagai bukti pembayaran. Jika tombol tidak berfungsi,
+        buka tautan berikut:
+      </Text>
+      <Text style={linkText}>{portalUrl}</Text>
+    </EmailLayout>
+  );
+}
+
 export function PengaduanSubmittedEmail({
   tenantName = "Komunitas Anda",
   categoryLabel = "Keluhan",
@@ -763,6 +816,7 @@ export const emailTemplates = {
   CommunityRegistrationPendingEmail,
   CommunityRegistrationApprovedEmail,
   CommunityRegistrationRejectedEmail,
+  SubscriptionInvoicePaidEmail,
   PengaduanSubmittedEmail,
   PengaduanRespondedEmail,
   MarketPilotProductShareEmail,
